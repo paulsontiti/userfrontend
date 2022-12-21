@@ -10,23 +10,15 @@ import { IUser, signUpDetails } from '../../types';
 import MobileTopBar from '../global/mobiletopbar';
 
 const initialValues: signUpDetails = {
-  firstName: '',
-  lastName: '',
   email: '',
-  contact: '',
   password: '',
-  userName: '',
 };
 
 //const phoneRegExp = /^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}/;
 
 const userSchema = yup.object().shape({
-  firstName: yup.string().required('required'),
-  lastName: yup.string().required('required'),
   email: yup.string().email('Invalid email').required('required'),
-  contact: yup.string().required('required'),
   password: yup.string().required('required'),
-  userName: yup.string().required('required'),
 });
 
 const SignUp = () => {

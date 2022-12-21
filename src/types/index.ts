@@ -15,10 +15,6 @@ export interface IUser {
 export type signUpDetails = {
   email: string;
   password: string;
-  firstName: string;
-  lastName: string;
-  contact: string;
-  userName: string;
 };
 
 export type LoginDetails = {
