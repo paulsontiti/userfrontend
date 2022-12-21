@@ -53,6 +53,7 @@ export const userSlice = createSlice({
     });
     builder.addCase(signup.fulfilled, (state, action: any) => {
       if (action.payload) {
+        console.log(action.payload.token);
         state.user = action.payload;
         localStorage.setItem('user', JSON.stringify(state.user));
       }

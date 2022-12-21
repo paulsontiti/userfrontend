@@ -8,6 +8,7 @@ import { signup, UserState } from '../../AppStore/slices/UserSlice';
 import { useAppDispatch, useAppSelector } from '../../AppStore/store';
 import { IUser, signUpDetails } from '../../types';
 import MobileTopBar from '../global/mobiletopbar';
+import { useState } from 'react';
 
 const initialValues: signUpDetails = {
   email: '',
@@ -34,6 +35,7 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
+  const [disable, setDisable] = useState(false);
 
   //get user from state
   const user: IUser = useAppSelector(
@@ -42,8 +44,12 @@ const SignUp = () => {
 
   //login handler
   const handleFormSubmit = (values: signUpDetails) => {
+    setDisable(true);
     dispatch(signup(values));
-    if (user) navigate(redirect);
+    if (user.token) {
+      alert('your account creation is successful');
+      navigate(redirect);
+    }
   };
   return (
     <>
@@ -113,8 +119,13 @@ const SignUp = () => {
                 />
               </Box>
               <Box display='flex' justifyContent='end' mt='1rem'>
-                <Button type='submit' color='secondary' variant='contained'>
-                  Create Account
+                <Button
+                  type='submit'
+                  disabled={disable}
+                  color='secondary'
+                  variant='contained'
+                >
+                  {disable ? 'please wait....' : 'Create Account'}
                 </Button>
               </Box>
             </form>
